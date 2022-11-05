@@ -5,7 +5,8 @@ class Telephone_Directory:
         '''
         initializing the necessary connections, database, collection to a variable
         '''
-        self.client = py.MongoClient('mongodb+srv://*****:******@cluster0.40vqzc7.mongodb.net/?retryWrites=true&w=majority')
+        self.connection_uri = input('Enter the mongodb connection uri : ')
+        self.client = py.MongoClient(self.connection_uri)
         self.db = self.client['Telephone_directory']
         self.collection = self.db['chennai_contact_details']
         print('welcome to Telephone Directory')
