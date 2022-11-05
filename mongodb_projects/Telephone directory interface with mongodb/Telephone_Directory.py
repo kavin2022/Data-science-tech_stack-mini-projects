@@ -5,11 +5,12 @@ class Telephone_Directory:
         '''
         initializing the necessary connections, database, collection to a variable
         '''
+        print('welcome to Telephone Directory')
         self.connection_uri = input('Enter the mongodb connection uri : ')
         self.client = py.MongoClient(self.connection_uri)
         self.db = self.client['Telephone_directory']
         self.collection = self.db['chennai_contact_details']
-        print('welcome to Telephone Directory')
+        
 
     def start(self):
         '''
