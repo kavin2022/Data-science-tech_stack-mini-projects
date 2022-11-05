@@ -2,12 +2,19 @@ import pymongo as py
 
 class Telephone_Directory:
     def __init__(self):
+        '''
+        initializing the necessary connections, database, collection to a variable
+        '''
         self.client = py.MongoClient('mongodb+srv://mongodb:mongodb@cluster0.40vqzc7.mongodb.net/?retryWrites=true&w=majority')
         self.db = self.client['Telephone_directory']
         self.collection = self.db['chennai_contact_details']
         print('welcome to Telephone Directory')
 
     def start(self):
+        '''
+        start method - gets a choice from a user
+        :return: calls another method based on user's input
+        '''
         print('Available options \n1. Create a contact\n2. Search a contact\n3. Update a contact\n4. Delete a contact\n0. to exit the directory')
         self.choice = input('Enter the one of the above choice in number( eg: for create enter 1) : ')
         if self.choice == '1':
@@ -24,7 +31,11 @@ class Telephone_Directory:
             print(f'No option exists for that input ({self.choice}) please enter again')
             self.start()
     def create(self):
-
+        '''
+        :input: gets the name,phone no,place of the contact
+        :working:  it create a document in the collection with above details
+        :return: start method to show available options again
+        '''
         self.name = input('Enter the name of the contact or enter 0 for options menu : ').casefold()
         if self.name == '0':
             self.start()
@@ -35,7 +46,11 @@ class Telephone_Directory:
             self.start()
 
     def search(self):
-
+        '''
+        :input: get the name of the contact
+        :working: based on the name it searches the collection and prints the contact
+        :return: start method to show available options again
+        '''
         self.name = input('Enter the name of the contact or enter 0 for options menu : ').casefold()
         if self.name == '0':
             self.start()
@@ -48,6 +63,11 @@ class Telephone_Directory:
                     print(self.i)
             self.start()
     def update(self):
+        '''
+        :input: gets the details to update and get the name of the contact
+        :working: based on the name it searches the collection and asks the new details and updates the information
+        :return: start method to show available options again
+        '''
         print('Details to change\n1. Name\n2. Phone no\n3. Place\n0. go back to options menu ')
         print('Instruction :\nenter input as number \neg:\n 1. to change name - enter: 1 \n 2. to change name,phonenumber -enter : 1,2 ')
 
@@ -77,7 +97,11 @@ class Telephone_Directory:
                     print('not a valid option')
             self.start()
     def delete(self):
-
+        '''
+        :input: get the name of the contact to delete
+        :working: based on the name it searches the collection and deletes the document from the collection
+        :return: start method to show available options again
+        '''
         self.name_2_query = input('Enter the name to be deleted or press 0 to go back to options : ').casefold()
         if self.name_2_query == '0':
             self.start()
@@ -85,4 +109,7 @@ class Telephone_Directory:
             self.collection.delete_one({'Name': self.name_2_query})
             self.start()
     def exit(self):
+        '''
+        prints the thk you line and ends the program
+        '''
         print('Thank you for using this telephone directory')
