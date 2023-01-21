@@ -1,0 +1,1 @@
+this folder contains 60 pandas exercises
